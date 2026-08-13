@@ -1,0 +1,684 @@
+{
+  "evaluation": "chunk_parameter_ablation",
+  "generated_at": "2026-08-13T11:52:31",
+  "document_count": 8,
+  "case_count": 12,
+  "embedding_model": "BAAI/bge-small-zh-v1.5",
+  "embedding_dimensions": 512,
+  "top_k": 3,
+  "recommended_config": "700/120",
+  "selection_priority": [
+    "hit_at_3",
+    "mrr",
+    "keyword_recall",
+    "chunk_count",
+    "query_latency_p95_ms"
+  ],
+  "results": [
+    {
+      "config": "400/80",
+      "chunk_size": 400,
+      "chunk_overlap": 80,
+      "chunk_count": 835,
+      "chunks_by_source": {
+        "取水许可办理需资料及流程.docx": 9,
+        "取水许可申请书.docx": 14,
+        "取水许可证申领表（2022）.docx": 5,
+        "国民经济分类国标.pdf": 789,
+        "填报说明.docx": 8,
+        "申请书.docx": 6,
+        "附件2验收申请.doc": 2,
+        "附件3验收报告.doc": 2
+      },
+      "build_seconds": 47.51,
+      "hit_at_1": 0.5833,
+      "hit_at_3": 0.9167,
+      "mrr": 0.7361,
+      "keyword_recall": 0.8056,
+      "query_latency_mean_ms": 14.81,
+      "query_latency_p95_ms": 16.58,
+      "cases": [
+        {
+          "id": "RAG-001",
+          "query": "办理取水许可需要提交哪些申请和验收材料？",
+          "first_relevant_rank": 3,
+          "returned_sources": [
+            "取水许可证申领表（2022）.docx",
+            "附件2验收申请.doc",
+            "取水许可办理需资料及流程.docx"
+          ],
+          "matched_keywords": [
+            "取水许可证申请书",
+            "验收申请"
+          ],
+          "keyword_recall": 0.6667,
+          "latency_ms": 15.7
+        },
+        {
+          "id": "RAG-002",
+          "query": "取水用途勾选其他时应当怎样填写？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "填报说明.docx",
+            "取水许可申请书.docx",
+            "取水许可申请书.docx"
+          ],
+          "matched_keywords": [
+            "其他",
+            "具体用途",
+            "注明"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 13.28
+        },
+        {
+          "id": "RAG-003",
+          "query": "运行期年取水量的单位和填写要求是什么？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "填报说明.docx",
+            "取水许可申请书.docx",
+            "附件2验收申请.doc"
+          ],
+          "matched_keywords": [
+            "运行期年取水量",
+            "万m3/年",
+            "年总取水量"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 13.95
+        },
+        {
+          "id": "RAG-004",
+          "query": "取水计量方式和计量设备类型包括哪些？",
+          "first_relevant_rank": 2,
+          "returned_sources": [
+            "取水许可申请书.docx",
+            "取水许可证申领表（2022）.docx",
+            "取水许可证申领表（2022）.docx"
+          ],
+          "matched_keywords": [
+            "计量方式",
+            "流量计",
+            "水表"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 13.0
+        },
+        {
+          "id": "RAG-005",
+          "query": "共同申请人需要填写哪些身份和份额信息？",
+          "first_relevant_rank": null,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "matched_keywords": [],
+          "keyword_recall": 0.0,
+          "latency_ms": 13.01
+        },
+        {
+          "id": "RAG-006",
+          "query": "取水许可证申领表的申请人盖章和申请日期在哪里填写？",
+          "first_relevant_rank": 2,
+          "returned_sources": [
+            "取水许可申请书.docx",
+            "取水许可证申领表（2022）.docx",
+            "申请书.docx"
+          ],
+          "matched_keywords": [
+            "申请人",
+            "盖章",
+            "申请日期"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 15.24
+        },
+        {
+          "id": "RAG-007",
+          "query": "第三方安装计量设备后多久可以提交验收资料？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "取水许可办理需资料及流程.docx",
+            "取水许可办理需资料及流程.docx",
+            "取水许可办理需资料及流程.docx"
+          ],
+          "matched_keywords": [
+            "试运行",
+            "30天",
+            "验收资料"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 14.42
+        },
+        {
+          "id": "RAG-008",
+          "query": "011谷物种植在国民经济行业分类中属于什么类别？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "matched_keywords": [
+            "谷物种植"
+          ],
+          "keyword_recall": 0.5,
+          "latency_ms": 15.88
+        },
+        {
+          "id": "RAG-009",
+          "query": "015水果种植是否符合国民经济行业分类中类填写要求？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "matched_keywords": [
+            "水果种植"
+          ],
+          "keyword_recall": 0.5,
+          "latency_ms": 16.37
+        },
+        {
+          "id": "RAG-010",
+          "query": "取水工程验收申请中应填写取水单位和联系人哪些信息？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "附件2验收申请.doc",
+            "取水许可申请书.docx",
+            "申请书.docx"
+          ],
+          "matched_keywords": [
+            "取水单位",
+            "联系人",
+            "电话"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 16.27
+        },
+        {
+          "id": "RAG-011",
+          "query": "退水地点和受纳水体功能目标应如何填写？",
+          "first_relevant_rank": 2,
+          "returned_sources": [
+            "申请书.docx",
+            "填报说明.docx",
+            "取水许可申请书.docx"
+          ],
+          "matched_keywords": [
+            "退水地点",
+            "受纳水体",
+            "功能目标"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 14.03
+        },
+        {
+          "id": "RAG-012",
+          "query": "取水许可申请书中的项目名称如何填写？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "取水许可申请书.docx",
+            "申请书.docx",
+            "填报说明.docx"
+          ],
+          "matched_keywords": [
+            "项目名称",
+            "新建",
+            "改建"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 16.58
+        }
+      ]
+    },
+    {
+      "config": "700/120",
+      "chunk_size": 700,
+      "chunk_overlap": 120,
+      "chunk_count": 462,
+      "chunks_by_source": {
+        "取水许可办理需资料及流程.docx": 5,
+        "取水许可申请书.docx": 8,
+        "取水许可证申领表（2022）.docx": 3,
+        "国民经济分类国标.pdf": 436,
+        "填报说明.docx": 5,
+        "申请书.docx": 3,
+        "附件2验收申请.doc": 1,
+        "附件3验收报告.doc": 1
+      },
+      "build_seconds": 37.53,
+      "hit_at_1": 0.6667,
+      "hit_at_3": 1.0,
+      "mrr": 0.8056,
+      "keyword_recall": 0.8611,
+      "query_latency_mean_ms": 15.06,
+      "query_latency_p95_ms": 16.28,
+      "cases": [
+        {
+          "id": "RAG-001",
+          "query": "办理取水许可需要提交哪些申请和验收材料？",
+          "first_relevant_rank": 3,
+          "returned_sources": [
+            "取水许可证申领表（2022）.docx",
+            "附件2验收申请.doc",
+            "取水许可办理需资料及流程.docx"
+          ],
+          "matched_keywords": [
+            "验收资料",
+            "取水许可证申请书",
+            "验收申请"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 16.23
+        },
+        {
+          "id": "RAG-002",
+          "query": "取水用途勾选其他时应当怎样填写？",
+          "first_relevant_rank": 3,
+          "returned_sources": [
+            "取水许可申请书.docx",
+            "取水许可申请书.docx",
+            "填报说明.docx"
+          ],
+          "matched_keywords": [
+            "其他"
+          ],
+          "keyword_recall": 0.3333,
+          "latency_ms": 14.16
+        },
+        {
+          "id": "RAG-003",
+          "query": "运行期年取水量的单位和填写要求是什么？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "填报说明.docx",
+            "申请书.docx",
+            "取水许可申请书.docx"
+          ],
+          "matched_keywords": [
+            "运行期年取水量",
+            "万m3/年",
+            "年总取水量"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 14.0
+        },
+        {
+          "id": "RAG-004",
+          "query": "取水计量方式和计量设备类型包括哪些？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "取水许可证申领表（2022）.docx",
+            "填报说明.docx",
+            "取水许可证申领表（2022）.docx"
+          ],
+          "matched_keywords": [
+            "计量方式",
+            "流量计",
+            "水表"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 14.87
+        },
+        {
+          "id": "RAG-005",
+          "query": "共同申请人需要填写哪些身份和份额信息？",
+          "first_relevant_rank": 2,
+          "returned_sources": [
+            "填报说明.docx",
+            "取水许可申请书.docx",
+            "取水许可申请书.docx"
+          ],
+          "matched_keywords": [
+            "共同申请人",
+            "统一社会信用代码",
+            "份额"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 16.28
+        },
+        {
+          "id": "RAG-006",
+          "query": "取水许可证申领表的申请人盖章和申请日期在哪里填写？",
+          "first_relevant_rank": 2,
+          "returned_sources": [
+            "取水许可申请书.docx",
+            "取水许可证申领表（2022）.docx",
+            "申请书.docx"
+          ],
+          "matched_keywords": [
+            "申请人",
+            "盖章",
+            "申请日期"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 14.7
+        },
+        {
+          "id": "RAG-007",
+          "query": "第三方安装计量设备后多久可以提交验收资料？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "取水许可办理需资料及流程.docx",
+            "取水许可办理需资料及流程.docx",
+            "取水许可办理需资料及流程.docx"
+          ],
+          "matched_keywords": [
+            "试运行",
+            "30天",
+            "验收资料"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 15.19
+        },
+        {
+          "id": "RAG-008",
+          "query": "011谷物种植在国民经济行业分类中属于什么类别？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "matched_keywords": [
+            "谷物种植"
+          ],
+          "keyword_recall": 0.5,
+          "latency_ms": 14.12
+        },
+        {
+          "id": "RAG-009",
+          "query": "015水果种植是否符合国民经济行业分类中类填写要求？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "matched_keywords": [
+            "水果种植"
+          ],
+          "keyword_recall": 0.5,
+          "latency_ms": 15.28
+        },
+        {
+          "id": "RAG-010",
+          "query": "取水工程验收申请中应填写取水单位和联系人哪些信息？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "附件2验收申请.doc",
+            "取水许可申请书.docx",
+            "取水许可证申领表（2022）.docx"
+          ],
+          "matched_keywords": [
+            "取水单位",
+            "联系人",
+            "电话"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 14.88
+        },
+        {
+          "id": "RAG-011",
+          "query": "退水地点和受纳水体功能目标应如何填写？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "填报说明.docx",
+            "申请书.docx",
+            "取水许可申请书.docx"
+          ],
+          "matched_keywords": [
+            "退水地点",
+            "受纳水体",
+            "功能目标"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 15.62
+        },
+        {
+          "id": "RAG-012",
+          "query": "取水许可申请书中的项目名称如何填写？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "取水许可申请书.docx",
+            "申请书.docx",
+            "取水许可申请书.docx"
+          ],
+          "matched_keywords": [
+            "项目名称",
+            "新建",
+            "改建"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 15.4
+        }
+      ]
+    },
+    {
+      "config": "1000/150",
+      "chunk_size": 1000,
+      "chunk_overlap": 150,
+      "chunk_count": 317,
+      "chunks_by_source": {
+        "取水许可办理需资料及流程.docx": 4,
+        "取水许可申请书.docx": 6,
+        "取水许可证申领表（2022）.docx": 2,
+        "国民经济分类国标.pdf": 298,
+        "填报说明.docx": 3,
+        "申请书.docx": 2,
+        "附件2验收申请.doc": 1,
+        "附件3验收报告.doc": 1
+      },
+      "build_seconds": 25.12,
+      "hit_at_1": 0.5833,
+      "hit_at_3": 0.8333,
+      "mrr": 0.6806,
+      "keyword_recall": 0.8333,
+      "query_latency_mean_ms": 15.04,
+      "query_latency_p95_ms": 16.15,
+      "cases": [
+        {
+          "id": "RAG-001",
+          "query": "办理取水许可需要提交哪些申请和验收材料？",
+          "first_relevant_rank": 3,
+          "returned_sources": [
+            "取水许可证申领表（2022）.docx",
+            "附件2验收申请.doc",
+            "取水许可办理需资料及流程.docx"
+          ],
+          "matched_keywords": [
+            "取水许可证申请书",
+            "验收申请"
+          ],
+          "keyword_recall": 0.6667,
+          "latency_ms": 15.72
+        },
+        {
+          "id": "RAG-002",
+          "query": "取水用途勾选其他时应当怎样填写？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "填报说明.docx",
+            "取水许可申请书.docx",
+            "申请书.docx"
+          ],
+          "matched_keywords": [
+            "其他",
+            "具体用途",
+            "注明"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 14.19
+        },
+        {
+          "id": "RAG-003",
+          "query": "运行期年取水量的单位和填写要求是什么？",
+          "first_relevant_rank": null,
+          "returned_sources": [
+            "取水许可申请书.docx",
+            "取水许可证申领表（2022）.docx",
+            "附件2验收申请.doc"
+          ],
+          "matched_keywords": [
+            "万m3/年"
+          ],
+          "keyword_recall": 0.3333,
+          "latency_ms": 15.4
+        },
+        {
+          "id": "RAG-004",
+          "query": "取水计量方式和计量设备类型包括哪些？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "取水许可证申领表（2022）.docx",
+            "申请书.docx",
+            "取水许可申请书.docx"
+          ],
+          "matched_keywords": [
+            "计量方式",
+            "流量计",
+            "水表"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 14.21
+        },
+        {
+          "id": "RAG-005",
+          "query": "共同申请人需要填写哪些身份和份额信息？",
+          "first_relevant_rank": 2,
+          "returned_sources": [
+            "填报说明.docx",
+            "取水许可申请书.docx",
+            "国民经济分类国标.pdf"
+          ],
+          "matched_keywords": [
+            "共同申请人",
+            "统一社会信用代码",
+            "份额"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 14.71
+        },
+        {
+          "id": "RAG-006",
+          "query": "取水许可证申领表的申请人盖章和申请日期在哪里填写？",
+          "first_relevant_rank": 3,
+          "returned_sources": [
+            "取水许可申请书.docx",
+            "申请书.docx",
+            "取水许可证申领表（2022）.docx"
+          ],
+          "matched_keywords": [
+            "申请人",
+            "盖章",
+            "申请日期"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 16.15
+        },
+        {
+          "id": "RAG-007",
+          "query": "第三方安装计量设备后多久可以提交验收资料？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "取水许可办理需资料及流程.docx",
+            "取水许可办理需资料及流程.docx",
+            "取水许可证申领表（2022）.docx"
+          ],
+          "matched_keywords": [
+            "试运行",
+            "30天",
+            "验收资料"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 14.99
+        },
+        {
+          "id": "RAG-008",
+          "query": "011谷物种植在国民经济行业分类中属于什么类别？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "matched_keywords": [
+            "谷物种植"
+          ],
+          "keyword_recall": 0.5,
+          "latency_ms": 15.7
+        },
+        {
+          "id": "RAG-009",
+          "query": "015水果种植是否符合国民经济行业分类中类填写要求？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "matched_keywords": [
+            "水果种植"
+          ],
+          "keyword_recall": 0.5,
+          "latency_ms": 15.54
+        },
+        {
+          "id": "RAG-010",
+          "query": "取水工程验收申请中应填写取水单位和联系人哪些信息？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "附件2验收申请.doc",
+            "取水许可申请书.docx",
+            "取水许可证申领表（2022）.docx"
+          ],
+          "matched_keywords": [
+            "取水单位",
+            "联系人",
+            "电话"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 15.14
+        },
+        {
+          "id": "RAG-011",
+          "query": "退水地点和受纳水体功能目标应如何填写？",
+          "first_relevant_rank": null,
+          "returned_sources": [
+            "取水许可申请书.docx",
+            "取水许可申请书.docx",
+            "申请书.docx"
+          ],
+          "matched_keywords": [
+            "退水地点",
+            "受纳水体",
+            "功能目标"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 14.66
+        },
+        {
+          "id": "RAG-012",
+          "query": "取水许可申请书中的项目名称如何填写？",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "取水许可申请书.docx",
+            "申请书.docx",
+            "取水许可证申领表（2022）.docx"
+          ],
+          "matched_keywords": [
+            "项目名称",
+            "新建",
+            "改建"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 14.06
+        }
+      ]
+    }
+  ]
+}

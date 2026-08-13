@@ -1,0 +1,48 @@
+# IDE and OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Secrets and local configuration
+.env
+*.local
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Java
+spring-backend/target/
+spring-backend/.m2/
+spring-backend/data/
+spring-backend/uploads/
+
+# Python
+python-ai-service/.venv*/
+python-ai-service/venv/
+python-ai-service/__pycache__/
+python-ai-service/.pytest_cache/
+python-ai-service/chroma_db/
+python-ai-service/knowledge_docs/*
+!python-ai-service/knowledge_docs/README.md
+evaluation/__pycache__/
+
+# Runtime and generated files
+uploads/
+*.log
+*.tmp
+*.db
+*.sqlite
+
+# Private course and identity materials
+资料/
+测试用例*/
+*.doc
+*.docx
+*.pdf
+*.jpg
+*.jpeg
+*.png
+

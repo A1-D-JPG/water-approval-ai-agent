@@ -1,0 +1,52 @@
+[
+  {
+    "folder_prefix": "01",
+    "expected_decision": "REJECTED",
+    "expected_issue_types": ["证照类型不符", "要件缺失"]
+  },
+  {
+    "folder_prefix": "02",
+    "expected_decision": "REJECTED",
+    "expected_issue_types": ["要件缺失"]
+  },
+  {
+    "folder_prefix": "03",
+    "expected_decision": "REJECTED",
+    "expected_issue_types": ["要件缺失"]
+  },
+  {
+    "folder_prefix": "04",
+    "expected_decision": "REJECTED",
+    "expected_issue_types": ["信息不一致"]
+  },
+  {
+    "folder_prefix": "05",
+    "expected_decision": "REJECTED",
+    "expected_issue_types": ["信息不一致"]
+  },
+  {
+    "folder_prefix": "06",
+    "expected_decision": "REJECTED",
+    "expected_issue_types": ["关键信息缺失"]
+  },
+  {
+    "folder_prefix": "07",
+    "expected_decision": "REJECTED",
+    "expected_issue_types": ["关键信息缺失"]
+  },
+  {
+    "folder_prefix": "08",
+    "expected_decision": "REJECTED",
+    "expected_issue_types": ["有效期冲突"]
+  },
+  {
+    "folder_prefix": "09",
+    "expected_decision": "REJECTED",
+    "expected_issue_types": ["证照类型不符", "关键信息缺失", "要件缺失"]
+  },
+  {
+    "folder_prefix": "10",
+    "expected_decision": "APPROVED",
+    "expected_issue_types": []
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "RAG-001",
+    "query": "办理取水许可需要提交哪些申请和验收材料？",
+    "expected_sources": ["取水许可办理需资料及流程.docx"],
+    "expected_keywords": ["验收资料", "取水许可证申请书", "验收申请"]
+  },
+  {
+    "id": "RAG-002",
+    "query": "取水用途勾选其他时应当怎样填写？",
+    "expected_sources": ["填报说明.docx"],
+    "expected_keywords": ["其他", "具体用途", "注明"]
+  },
+  {
+    "id": "RAG-003",
+    "query": "运行期年取水量的单位和填写要求是什么？",
+    "expected_sources": ["填报说明.docx"],
+    "expected_keywords": ["运行期年取水量", "万m3/年", "年总取水量"]
+  },
+  {
+    "id": "RAG-004",
+    "query": "取水计量方式和计量设备类型包括哪些？",
+    "expected_sources": ["填报说明.docx", "取水许可证申领表（2022）.docx"],
+    "expected_keywords": ["计量方式", "流量计", "水表"]
+  },
+  {
+    "id": "RAG-005",
+    "query": "共同申请人需要填写哪些身份和份额信息？",
+    "expected_sources": ["取水许可申请书.docx"],
+    "expected_keywords": ["共同申请人", "统一社会信用代码", "份额"]
+  },
+  {
+    "id": "RAG-006",
+    "query": "取水许可证申领表的申请人盖章和申请日期在哪里填写？",
+    "expected_sources": ["取水许可证申领表（2022）.docx"],
+    "expected_keywords": ["申请人", "盖章", "申请日期"]
+  },
+  {
+    "id": "RAG-007",
+    "query": "第三方安装计量设备后多久可以提交验收资料？",
+    "expected_sources": ["取水许可办理需资料及流程.docx"],
+    "expected_keywords": ["试运行", "30天", "验收资料"]
+  },
+  {
+    "id": "RAG-008",
+    "query": "011谷物种植在国民经济行业分类中属于什么类别？",
+    "expected_sources": ["国民经济分类国标.pdf"],
+    "expected_keywords": ["011", "谷物种植"]
+  },
+  {
+    "id": "RAG-009",
+    "query": "015水果种植是否符合国民经济行业分类中类填写要求？",
+    "expected_sources": ["国民经济分类国标.pdf"],
+    "expected_keywords": ["015", "水果种植"]
+  },
+  {
+    "id": "RAG-010",
+    "query": "取水工程验收申请中应填写取水单位和联系人哪些信息？",
+    "expected_sources": ["附件2验收申请.doc"],
+    "expected_keywords": ["取水单位", "联系人", "电话"]
+  },
+  {
+    "id": "RAG-011",
+    "query": "退水地点和受纳水体功能目标应如何填写？",
+    "expected_sources": ["填报说明.docx"],
+    "expected_keywords": ["退水地点", "受纳水体", "功能目标"]
+  },
+  {
+    "id": "RAG-012",
+    "query": "取水许可申请书中的项目名称如何填写？",
+    "expected_sources": ["取水许可申请书.docx"],
+    "expected_keywords": ["项目名称", "新建", "改建"]
+  }
+]

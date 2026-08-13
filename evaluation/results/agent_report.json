@@ -1,0 +1,361 @@
+{
+  "evaluation": "agent_review",
+  "generated_at": "2026-08-13T11:07:11",
+  "dataset": "C:\\Users\\20372\\Desktop\\direction-practice\\evaluation\\datasets\\agent_cases.json",
+  "case_count": 10,
+  "repeats_per_case": 3,
+  "metrics": {
+    "decision_accuracy": 1.0,
+    "exact_issue_set_accuracy": 1.0,
+    "issue_type_precision": 1.0,
+    "issue_type_recall": 1.0,
+    "issue_type_f1": 1.0,
+    "stability_rate": 1.0,
+    "rule_review_latency_mean_ms": 17.93
+  },
+  "cases": [
+    {
+      "case": "01_证照类型不符_身份证文件实际为驾驶证",
+      "expected_decision": "REJECTED",
+      "actual_decision": "REJECTED",
+      "decision_match": true,
+      "expected_issue_types": [
+        "要件缺失",
+        "证照类型不符"
+      ],
+      "actual_issue_types": [
+        "要件缺失",
+        "证照类型不符"
+      ],
+      "issue_set_match": true,
+      "stable": true,
+      "repeat_count": 3,
+      "latency_mean_ms": 108.3,
+      "issue_count": 2,
+      "issues": [
+        {
+          "type": "证照类型不符",
+          "severity": "高",
+          "message": "文件名显示为身份证，但识别到的实际内容为驾驶证。",
+          "location": "身份证.png",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请上传真实的身份证附件，不能用其他证照替代。"
+        },
+        {
+          "type": "要件缺失",
+          "severity": "高",
+          "message": "缺少必备附件：身份证",
+          "location": "附件清单",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请补充上传身份证。"
+        }
+      ]
+    },
+    {
+      "case": "02_要件缺失_缺少身份证附件",
+      "expected_decision": "REJECTED",
+      "actual_decision": "REJECTED",
+      "decision_match": true,
+      "expected_issue_types": [
+        "要件缺失"
+      ],
+      "actual_issue_types": [
+        "要件缺失"
+      ],
+      "issue_set_match": true,
+      "stable": true,
+      "repeat_count": 3,
+      "latency_mean_ms": 7.55,
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "要件缺失",
+          "severity": "高",
+          "message": "缺少必备附件：身份证",
+          "location": "附件清单",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请补充上传身份证。"
+        }
+      ]
+    },
+    {
+      "case": "03_要件缺失_缺少营业执照",
+      "expected_decision": "REJECTED",
+      "actual_decision": "REJECTED",
+      "decision_match": true,
+      "expected_issue_types": [
+        "要件缺失"
+      ],
+      "actual_issue_types": [
+        "要件缺失"
+      ],
+      "issue_set_match": true,
+      "stable": true,
+      "repeat_count": 3,
+      "latency_mean_ms": 7.54,
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "要件缺失",
+          "severity": "高",
+          "message": "缺少必备附件：营业执照或主体资格证明",
+          "location": "附件清单",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请补充上传营业执照或主体资格证明。"
+        }
+      ]
+    },
+    {
+      "case": "04_信息不一致_申请人与身份证姓名不一致",
+      "expected_decision": "REJECTED",
+      "actual_decision": "REJECTED",
+      "decision_match": true,
+      "expected_issue_types": [
+        "信息不一致"
+      ],
+      "actual_issue_types": [
+        "信息不一致"
+      ],
+      "issue_set_match": true,
+      "stable": true,
+      "repeat_count": 3,
+      "latency_mean_ms": 7.58,
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "信息不一致",
+          "severity": "高",
+          "message": "申请表申请人“王世杰”与身份证附件识别姓名不一致。",
+          "location": "申请人/身份证附件",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请核对申请表与身份证中的姓名。"
+        }
+      ]
+    },
+    {
+      "case": "05_信息不一致_证件号不一致",
+      "expected_decision": "REJECTED",
+      "actual_decision": "REJECTED",
+      "decision_match": true,
+      "expected_issue_types": [
+        "信息不一致"
+      ],
+      "actual_issue_types": [
+        "信息不一致"
+      ],
+      "issue_set_match": true,
+      "stable": true,
+      "repeat_count": 3,
+      "latency_mean_ms": 8.13,
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "信息不一致",
+          "severity": "高",
+          "message": "申请表证件号“110101199003070013”与附件识别证件号不一致。",
+          "location": "证件号/身份证附件",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请上传与申请人一致的身份证附件，或修正申请表证件号。"
+        }
+      ]
+    },
+    {
+      "case": "06_关键信息缺失_项目地点联系方式缺失",
+      "expected_decision": "REJECTED",
+      "actual_decision": "REJECTED",
+      "decision_match": true,
+      "expected_issue_types": [
+        "关键信息缺失"
+      ],
+      "actual_issue_types": [
+        "关键信息缺失"
+      ],
+      "issue_set_match": true,
+      "stable": true,
+      "repeat_count": 3,
+      "latency_mean_ms": 7.97,
+      "issue_count": 3,
+      "issues": [
+        {
+          "type": "关键信息缺失",
+          "severity": "中",
+          "message": "联系方式为空或未填写。",
+          "location": "联系方式",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请补充填写联系方式。"
+        },
+        {
+          "type": "关键信息缺失",
+          "severity": "中",
+          "message": "项目名称为空或未填写。",
+          "location": "项目名称",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请补充填写项目名称。"
+        },
+        {
+          "type": "关键信息缺失",
+          "severity": "中",
+          "message": "取水地点为空或未填写。",
+          "location": "取水地点",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请补充填写取水地点。"
+        }
+      ]
+    },
+    {
+      "case": "07_关键信息缺失_取水用途其他未说明",
+      "expected_decision": "REJECTED",
+      "actual_decision": "REJECTED",
+      "decision_match": true,
+      "expected_issue_types": [
+        "关键信息缺失"
+      ],
+      "actual_issue_types": [
+        "关键信息缺失"
+      ],
+      "issue_set_match": true,
+      "stable": true,
+      "repeat_count": 3,
+      "latency_mean_ms": 8.21,
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "关键信息缺失",
+          "severity": "中",
+          "message": "取水用途选择了“其他”，但未补充说明具体用途。",
+          "location": "取水用途",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请在“其他”后填写明确用途说明。"
+        }
+      ]
+    },
+    {
+      "case": "08_有效期冲突_证照已过期",
+      "expected_decision": "REJECTED",
+      "actual_decision": "REJECTED",
+      "decision_match": true,
+      "expected_issue_types": [
+        "有效期冲突"
+      ],
+      "actual_issue_types": [
+        "有效期冲突"
+      ],
+      "issue_set_match": true,
+      "stable": true,
+      "repeat_count": 3,
+      "latency_mean_ms": 7.6,
+      "issue_count": 2,
+      "issues": [
+        {
+          "type": "有效期冲突",
+          "severity": "高",
+          "message": "营业执照“营业执照信息摘录.docx”已过期，有效期至 2020-01-01。",
+          "location": "营业执照信息摘录.docx",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请上传有效期内的身份证或营业执照。"
+        },
+        {
+          "type": "有效期冲突",
+          "severity": "高",
+          "message": "身份证“身份证信息摘录.docx”已过期，有效期至 2020-01-01。",
+          "location": "身份证信息摘录.docx",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请上传有效期内的身份证或营业执照。"
+        }
+      ]
+    },
+    {
+      "case": "09_多问题混合_证照错误且多字段缺失",
+      "expected_decision": "REJECTED",
+      "actual_decision": "REJECTED",
+      "decision_match": true,
+      "expected_issue_types": [
+        "关键信息缺失",
+        "要件缺失",
+        "证照类型不符"
+      ],
+      "actual_issue_types": [
+        "关键信息缺失",
+        "要件缺失",
+        "证照类型不符"
+      ],
+      "issue_set_match": true,
+      "stable": true,
+      "repeat_count": 3,
+      "latency_mean_ms": 7.88,
+      "issue_count": 7,
+      "issues": [
+        {
+          "type": "证照类型不符",
+          "severity": "高",
+          "message": "文件名显示为身份证，但识别到的实际内容为驾驶证。",
+          "location": "身份证.png",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请上传真实的身份证附件，不能用其他证照替代。"
+        },
+        {
+          "type": "关键信息缺失",
+          "severity": "中",
+          "message": "联系方式为空或未填写。",
+          "location": "联系方式",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请补充填写联系方式。"
+        },
+        {
+          "type": "关键信息缺失",
+          "severity": "中",
+          "message": "项目名称为空或未填写。",
+          "location": "项目名称",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请补充填写项目名称。"
+        },
+        {
+          "type": "关键信息缺失",
+          "severity": "中",
+          "message": "取水地点为空或未填写。",
+          "location": "取水地点",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请补充填写取水地点。"
+        },
+        {
+          "type": "关键信息缺失",
+          "severity": "中",
+          "message": "取水用途选择了“其他”，但未补充说明具体用途。",
+          "location": "取水用途",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请在“其他”后填写明确用途说明。"
+        },
+        {
+          "type": "要件缺失",
+          "severity": "高",
+          "message": "缺少必备附件：身份证",
+          "location": "附件清单",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请补充上传身份证。"
+        },
+        {
+          "type": "要件缺失",
+          "severity": "高",
+          "message": "缺少必备附件：营业执照或主体资格证明",
+          "location": "附件清单",
+          "legal_basis": "取水许可材料初审规则、实名制申报要求及证照有效性校验规则",
+          "suggestion": "请补充上传营业执照或主体资格证明。"
+        }
+      ]
+    },
+    {
+      "case": "10_合规通过样例",
+      "expected_decision": "APPROVED",
+      "actual_decision": "APPROVED",
+      "decision_match": true,
+      "expected_issue_types": [],
+      "actual_issue_types": [],
+      "issue_set_match": true,
+      "stable": true,
+      "repeat_count": 3,
+      "latency_mean_ms": 8.51,
+      "issue_count": 0,
+      "issues": []
+    }
+  ]
+}

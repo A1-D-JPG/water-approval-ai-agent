@@ -1,0 +1,301 @@
+{
+  "evaluation": "embedding_ab_comparison",
+  "generated_at": "2026-08-13T11:05:12",
+  "case_count": 12,
+  "chunk_count": 106,
+  "chunk_size": 700,
+  "chunk_overlap": 120,
+  "top_k": 3,
+  "models": [
+    {
+      "model": "LocalHashEmbeddings",
+      "dimensions": 384,
+      "chunk_count": 106,
+      "build_seconds": 0.49,
+      "hit_at_1": 0.1667,
+      "hit_at_3": 0.1667,
+      "mrr": 0.1667,
+      "keyword_recall": 0.0694,
+      "query_latency_mean_ms": 2.11,
+      "cases": [
+        {
+          "id": "RAG-001",
+          "first_relevant_rank": null,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "取水许可申请书.docx",
+            "申请书.docx"
+          ],
+          "keyword_recall": 0.0,
+          "latency_ms": 2.36
+        },
+        {
+          "id": "RAG-002",
+          "first_relevant_rank": null,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "keyword_recall": 0.3333,
+          "latency_ms": 2.07
+        },
+        {
+          "id": "RAG-003",
+          "first_relevant_rank": null,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "keyword_recall": 0.0,
+          "latency_ms": 1.84
+        },
+        {
+          "id": "RAG-004",
+          "first_relevant_rank": null,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "申请书.docx"
+          ],
+          "keyword_recall": 0.0,
+          "latency_ms": 2.33
+        },
+        {
+          "id": "RAG-005",
+          "first_relevant_rank": null,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "keyword_recall": 0.0,
+          "latency_ms": 2.36
+        },
+        {
+          "id": "RAG-006",
+          "first_relevant_rank": null,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "keyword_recall": 0.0,
+          "latency_ms": 2.18
+        },
+        {
+          "id": "RAG-007",
+          "first_relevant_rank": null,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "附件3验收报告.doc"
+          ],
+          "keyword_recall": 0.0,
+          "latency_ms": 2.01
+        },
+        {
+          "id": "RAG-008",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "附件2验收申请.doc",
+            "国民经济分类国标.pdf"
+          ],
+          "keyword_recall": 0.0,
+          "latency_ms": 1.98
+        },
+        {
+          "id": "RAG-009",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "keyword_recall": 0.5,
+          "latency_ms": 1.92
+        },
+        {
+          "id": "RAG-010",
+          "first_relevant_rank": null,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "keyword_recall": 0.0,
+          "latency_ms": 1.81
+        },
+        {
+          "id": "RAG-011",
+          "first_relevant_rank": null,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "keyword_recall": 0.0,
+          "latency_ms": 2.34
+        },
+        {
+          "id": "RAG-012",
+          "first_relevant_rank": null,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "keyword_recall": 0.0,
+          "latency_ms": 2.08
+        }
+      ]
+    },
+    {
+      "model": "BAAI/bge-small-zh-v1.5",
+      "dimensions": 512,
+      "chunk_count": 106,
+      "build_seconds": 7.36,
+      "hit_at_1": 0.6667,
+      "hit_at_3": 1.0,
+      "mrr": 0.8056,
+      "keyword_recall": 0.8611,
+      "query_latency_mean_ms": 22.38,
+      "cases": [
+        {
+          "id": "RAG-001",
+          "first_relevant_rank": 3,
+          "returned_sources": [
+            "取水许可证申领表（2022）.docx",
+            "附件2验收申请.doc",
+            "取水许可办理需资料及流程.docx"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 21.79
+        },
+        {
+          "id": "RAG-002",
+          "first_relevant_rank": 3,
+          "returned_sources": [
+            "取水许可申请书.docx",
+            "取水许可申请书.docx",
+            "填报说明.docx"
+          ],
+          "keyword_recall": 0.3333,
+          "latency_ms": 20.26
+        },
+        {
+          "id": "RAG-003",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "填报说明.docx",
+            "申请书.docx",
+            "取水许可申请书.docx"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 18.12
+        },
+        {
+          "id": "RAG-004",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "取水许可证申领表（2022）.docx",
+            "填报说明.docx",
+            "取水许可证申领表（2022）.docx"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 20.23
+        },
+        {
+          "id": "RAG-005",
+          "first_relevant_rank": 2,
+          "returned_sources": [
+            "填报说明.docx",
+            "取水许可申请书.docx",
+            "取水许可申请书.docx"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 21.84
+        },
+        {
+          "id": "RAG-006",
+          "first_relevant_rank": 2,
+          "returned_sources": [
+            "取水许可申请书.docx",
+            "取水许可证申领表（2022）.docx",
+            "申请书.docx"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 31.68
+        },
+        {
+          "id": "RAG-007",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "取水许可办理需资料及流程.docx",
+            "取水许可办理需资料及流程.docx",
+            "取水许可办理需资料及流程.docx"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 21.17
+        },
+        {
+          "id": "RAG-008",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "keyword_recall": 0.5,
+          "latency_ms": 27.24
+        },
+        {
+          "id": "RAG-009",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf",
+            "国民经济分类国标.pdf"
+          ],
+          "keyword_recall": 0.5,
+          "latency_ms": 23.32
+        },
+        {
+          "id": "RAG-010",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "附件2验收申请.doc",
+            "取水许可申请书.docx",
+            "取水许可证申领表（2022）.docx"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 21.57
+        },
+        {
+          "id": "RAG-011",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "填报说明.docx",
+            "申请书.docx",
+            "取水许可申请书.docx"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 23.83
+        },
+        {
+          "id": "RAG-012",
+          "first_relevant_rank": 1,
+          "returned_sources": [
+            "取水许可申请书.docx",
+            "申请书.docx",
+            "取水许可申请书.docx"
+          ],
+          "keyword_recall": 1.0,
+          "latency_ms": 17.54
+        }
+      ]
+    }
+  ]
+}
