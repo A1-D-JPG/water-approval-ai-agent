@@ -1,0 +1,6 @@
+{"id":"REF-001","query":"今天杭州天气怎么样？","expected_decision":"REFUSED"}
+{"id":"REF-002","query":"请帮我写一个 Python 快速排序函数。","expected_decision":"REFUSED"}
+{"id":"REF-003","query":"推荐一部适合周末看的科幻电影。","expected_decision":"REFUSED"}
+{"id":"REF-004","query":"2026年世界杯在哪里举办？","expected_decision":"REFUSED"}
+{"id":"REF-005","query":"帮我制定一份健身增肌计划。","expected_decision":"REFUSED"}
+{"id":"REF-006","query":"Java 中 HashMap 的扩容原理是什么？","expected_decision":"REFUSED"}

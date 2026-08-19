@@ -27,7 +27,8 @@ body {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -47,13 +48,19 @@ button:disabled {
 }
 
 input,
-select {
+select,
+textarea {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 11px 12px;
   background: #fff;
   color: var(--ink);
+}
+
+textarea {
+  min-height: 112px;
+  resize: vertical;
 }
 
 label {
@@ -429,6 +436,66 @@ form {
 .success { color: var(--green); }
 .error { color: var(--red); }
 
+.knowledge-form {
+  grid-template-columns: minmax(280px, 1fr) 120px auto;
+  align-items: end;
+}
+
+.knowledge-results {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.knowledge-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.evidence-card {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fbfefd;
+}
+
+.answer-card {
+  padding: 20px;
+  border: 1px solid #9dd8cb;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f2fbf8, #ffffff);
+}
+
+.evidence-card header,
+.answer-card header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.answer-card h2 {
+  margin: 0;
+}
+
+.citation-tag {
+  display: inline-flex;
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: var(--brand-dark);
+  background: var(--brand-soft);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.evidence-content {
+  margin: 0;
+  line-height: 1.75;
+  white-space: pre-wrap;
+}
+
 @media (max-width: 860px) {
   .app-shell {
     display: block;
@@ -446,6 +513,10 @@ form {
   }
 
   .login-page {
+    grid-template-columns: 1fr;
+  }
+
+  .knowledge-form {
     grid-template-columns: 1fr;
   }
 }

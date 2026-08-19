@@ -1,0 +1,9 @@
+{"id":"GATE-001","query":"今天杭州天气怎么样？","expected_decision":"REFUSED"}
+{"id":"GATE-002","query":"请帮我写一个 Python 快速排序函数。","expected_decision":"REFUSED"}
+{"id":"GATE-003","query":"推荐一部科幻电影。","expected_decision":"REFUSED"}
+{"id":"GATE-004","query":"取水许可申请通常需要哪些材料？","expected_decision":"ANSWERED"}
+{"id":"GATE-005","query":"取水用途选择其他时需要补充什么信息？","expected_decision":"ANSWERED"}
+{"id":"GATE-006","query":"取水许可证申领表中的申请日期在哪里填写？","expected_decision":"ANSWERED"}
+{"id":"GATE-007","query":"营业执照附件缺失会影响材料初审吗？","expected_decision":"ANSWERED"}
+{"id":"GATE-008","query":"身份证号码与申请表不一致应如何处理？","expected_decision":"ANSWERED"}
+{"id":"GATE-009","query":"行业类别011谷物种植是否符合填写规范？","expected_decision":"ANSWERED"}

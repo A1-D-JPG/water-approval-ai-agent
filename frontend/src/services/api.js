@@ -94,6 +94,16 @@ export async function reviewApplication(id) {
   return handle(response);
 }
 
+export async function queryKnowledge(payload) {
+  const response = await fetch(`${API_BASE_URL}/api/rag/query`, {
+    method: "POST",
+    mode: "cors",
+    headers: authHeaders({ "Content-Type": "application/json" }),
+    body: JSON.stringify(payload)
+  });
+  return handle(response);
+}
+
 export async function withdrawApplication(id) {
   const response = await fetch(`${API_BASE_URL}/api/withdraw/${id}`, {
     method: "POST",

@@ -1,0 +1,6 @@
+{"id":"GEN-001","query":"申请取水许可证需要提交哪些材料？","expected_sources":["取水许可证申领表（2022）.docx","取水许可办理需资料及流程.docx"],"expected_keywords":["批准","取水申请","计量","监测报告"]}
+{"id":"GEN-002","query":"取水用途勾选其他时应当怎样填写？","expected_sources":["填报说明.docx","取水许可申请书.docx"],"expected_keywords":["其他","具体用途"]}
+{"id":"GEN-003","query":"运行期年取水量的单位和填写要求是什么？","expected_sources":["填报说明.docx"],"expected_keywords":["万m3/年","年总取水量"]}
+{"id":"GEN-004","query":"011谷物种植在国民经济行业分类中属于什么类别？","expected_sources":["国民经济分类国标.pdf"],"expected_keywords":["011","谷物种植"]}
+{"id":"GEN-005","query":"取水工程验收申请中应填写取水单位和联系人哪些信息？","expected_sources":["附件2验收申请.doc"],"expected_keywords":["取水单位","联系人","电话"]}
+{"id":"GEN-006","query":"取水工程验收通过后，通常在多长时间内核发取水许可证？","expected_sources":["取水许可办理需资料及流程.docx"],"expected_keywords":["5日","核发","取水许可证"]}

@@ -5,12 +5,14 @@ import NewView from "../views/NewView.vue";
 import ReviewView from "../views/ReviewView.vue";
 import LoginView from "../views/LoginView.vue";
 import AdminView from "../views/AdminView.vue";
+import KnowledgeView from "../views/KnowledgeView.vue";
 
 const routes = [
   { path: "/login", name: "login", component: LoginView, meta: { public: true } },
   { path: "/", name: "list", component: ListView, meta: { roles: ["APPLICANT", "REVIEWER", "ADMIN"] } },
   { path: "/new", name: "new", component: NewView, meta: { roles: ["APPLICANT"] } },
   { path: "/review", name: "review", component: ReviewView, meta: { roles: ["APPLICANT", "REVIEWER", "ADMIN"] } },
+  { path: "/knowledge", name: "knowledge", component: KnowledgeView, meta: { roles: ["APPLICANT", "REVIEWER", "ADMIN"] } },
   { path: "/admin", name: "admin", component: AdminView, meta: { roles: ["ADMIN"] } }
 ];
 
