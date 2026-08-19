@@ -46,20 +46,23 @@ const navItems = computed(() => {
     return [
       { path: "/", label: "我的申请" },
       { path: "/new", label: "新建申请" },
-      { path: "/review", label: "初审结果" }
+      { path: "/review", label: "初审结果" },
+      { path: "/knowledge", label: "法规知识检索" }
     ];
   }
   if (role === "REVIEWER") {
     return [
       { path: "/", label: "审核工作台" },
-      { path: "/review", label: "初审结果" }
+      { path: "/review", label: "初审结果" },
+      { path: "/knowledge", label: "法规知识检索" }
     ];
   }
   if (role === "ADMIN") {
     return [
       { path: "/", label: "全部申请" },
       { path: "/admin", label: "管理看板" },
-      { path: "/review", label: "初审结果" }
+      { path: "/review", label: "初审结果" },
+      { path: "/knowledge", label: "法规知识检索" }
     ];
   }
   return [];

@@ -2,7 +2,7 @@
 
 from mcp.server.fastmcp import FastMCP
 
-from ai_core import (
+from app.services.review_engine import (
     check_completeness,
     extract_key_entities,
     industry_category_check,

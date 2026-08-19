@@ -15,6 +15,34 @@ sys.path.insert(0, str(ROOT / "python-ai-service"))
 from ai_core import embeddings, knowledge_search  # noqa: E402
 
 
+def load_cases(dataset_path: Path) -> list[dict[str, Any]]:
+    """Load either a JSON array or a line-delimited JSON evaluation dataset."""
+    raw = dataset_path.read_text(encoding="utf-8")
+    if dataset_path.suffix.lower() == ".jsonl":
+        cases = [json.loads(line) for line in raw.splitlines() if line.strip()]
+    else:
+        cases = json.loads(raw)
+
+    if not isinstance(cases, list):
+        raise ValueError("Evaluation dataset must contain a list of cases.")
+
+    normalized: list[dict[str, Any]] = []
+    required = {"id", "expected_sources"}
+    for index, case in enumerate(cases, start=1):
+        if not isinstance(case, dict):
+            raise ValueError(f"Case {index} must be a JSON object.")
+        missing = required - set(case)
+        query = case.get("query") or case.get("question")
+        if missing or not isinstance(query, str) or not query.strip():
+            raise ValueError(
+                f"Case {index} requires id, query/question and expected_sources."
+            )
+        if not isinstance(case["expected_sources"], list) or not case["expected_sources"]:
+            raise ValueError(f"Case {case['id']} expected_sources must be a non-empty list.")
+        normalized.append({**case, "query": query.strip()})
+    return normalized
+
+
 def percentile(values: list[float], ratio: float) -> float:
     if not values:
         return 0.0
@@ -24,7 +52,7 @@ def percentile(values: list[float], ratio: float) -> float:
 
 
 def evaluate(dataset_path: Path, top_k: int) -> dict[str, Any]:
-    cases = json.loads(dataset_path.read_text(encoding="utf-8"))
+    cases = load_cases(dataset_path)
     details: list[dict[str, Any]] = []
     latencies: list[float] = []
     hit_at_1 = 0
@@ -57,6 +85,7 @@ def evaluate(dataset_path: Path, top_k: int) -> dict[str, Any]:
             {
                 "id": case["id"],
                 "query": case["query"],
+                "retrieval_mode": result.get("retrieval_mode", "unknown"),
                 "expected_sources": sorted(expected_sources),
                 "returned_sources": returned_sources,
                 "first_relevant_rank": first_rank,
@@ -69,6 +98,7 @@ def evaluate(dataset_path: Path, top_k: int) -> dict[str, Any]:
         )
 
     total = len(cases)
+    retrieval_modes = sorted({case["retrieval_mode"] for case in details})
     return {
         "evaluation": "rag_retrieval",
         "generated_at": datetime.now().isoformat(timespec="seconds"),
@@ -76,6 +106,7 @@ def evaluate(dataset_path: Path, top_k: int) -> dict[str, Any]:
         "case_count": total,
         "top_k": top_k,
         "embedding_model": type(embeddings()).__name__,
+        "retrieval_mode": ", ".join(retrieval_modes),
         "metrics": {
             "hit_at_1": round(hit_at_1 / total, 4) if total else 0.0,
             f"hit_at_{top_k}": round(hit_at_k / total, 4) if total else 0.0,
@@ -97,6 +128,7 @@ def markdown_report(report: dict[str, Any]) -> str:
         f"- 评测时间：{report['generated_at']}",
         f"- 查询数量：{report['case_count']}",
         f"- Embedding：{report['embedding_model']}",
+        f"- 检索模式：{report['retrieval_mode']}",
         f"- Hit@1：{metrics['hit_at_1']:.2%}",
         f"- Hit@{report['top_k']}：{metrics[hit_k_name]:.2%}",
         f"- MRR：{metrics['mrr']:.4f}",
@@ -124,7 +156,12 @@ def markdown_report(report: dict[str, Any]) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Evaluate RAG retrieval with a labeled dataset.")
-    parser.add_argument("--dataset", type=Path, default=ROOT / "evaluation/datasets/rag_cases.json")
+    parser.add_argument(
+        "--dataset",
+        type=Path,
+        default=ROOT / "evaluation/datasets/retrieval_eval.jsonl",
+        help="JSON array or JSONL dataset; defaults to the versioned JSONL regression set.",
+    )
     parser.add_argument("--top-k", type=int, default=3)
     parser.add_argument("--output-dir", type=Path, default=ROOT / "evaluation/results")
     args = parser.parse_args()

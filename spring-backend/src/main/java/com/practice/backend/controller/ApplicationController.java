@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -242,6 +243,35 @@ public class ApplicationController {
             return aiResult;
         } catch (Exception ex) {
             throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "AI 服务调用失败：" + ex.getMessage(), ex);
+        }
+    }
+
+    @PostMapping("/rag/query")
+    public Map<String, Object> ragQuery(
+            @RequestHeader(value = "X-User-Id", required = false) Long userId,
+            @RequestHeader(value = "X-Role", required = false) String role,
+            @RequestBody Map<String, Object> payload) {
+        if (userId == null || !Set.of("APPLICANT", "REVIEWER", "ADMIN").contains(role)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "登录后才能使用知识库问答");
+        }
+        Object query = payload.get("query");
+        if (query == null || !StringUtils.hasText(query.toString())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "问题不能为空");
+        }
+        try {
+            @SuppressWarnings("unchecked")
+            Map<String, Object> result = restTemplate.postForObject(
+                    aiBaseUrl + "/rag/query",
+                    payload,
+                    Map.class);
+            if (result == null) {
+                throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "AI 服务返回为空");
+            }
+            return result;
+        } catch (ResponseStatusException ex) {
+            throw ex;
+        } catch (Exception ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "知识库服务调用失败：" + ex.getMessage(), ex);
         }
     }
 
