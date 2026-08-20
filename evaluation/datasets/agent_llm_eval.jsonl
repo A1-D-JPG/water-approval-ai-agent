@@ -1,0 +1,3 @@
+{"id":"AGENT-LLM-001","folder_prefix":"02","expected_decision":"REJECTED","required_tools":["knowledge_search","risk_summary"],"min_citations":1}
+{"id":"AGENT-LLM-002","folder_prefix":"08","expected_decision":"REJECTED","required_tools":["knowledge_search","risk_summary"],"min_citations":1}
+{"id":"AGENT-LLM-003","folder_prefix":"10","expected_decision":"APPROVED","required_tools":["knowledge_search","risk_summary"],"min_citations":1}
