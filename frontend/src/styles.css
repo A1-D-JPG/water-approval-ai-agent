@@ -421,6 +421,110 @@ form {
   margin-top: 4px;
 }
 
+.agent-trace-panel {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid #99d5cc;
+  border-radius: 16px;
+  background: #f2fbf9;
+}
+
+.agent-trace-head,
+.agent-step-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.agent-trace-head h3,
+.agent-trace-head p,
+.agent-trace-list p {
+  margin: 0;
+}
+
+.agent-trace-badges,
+.trace-citations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.trace-badge,
+.trace-status,
+.trace-citations span {
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.trace-badge,
+.trace-citations span {
+  color: var(--brand-dark);
+  background: #dff4ef;
+}
+
+.trace-success {
+  color: var(--green);
+  background: #dcfce7;
+}
+
+.trace-error {
+  color: var(--red);
+  background: #fee2e2;
+}
+
+.agent-analysis {
+  margin: 10px 0 0;
+}
+
+.agent-analysis summary {
+  cursor: pointer;
+  color: var(--brand-dark);
+  font-weight: 800;
+}
+
+.agent-analysis pre {
+  max-height: 360px;
+  margin: 10px 0 0;
+  padding: 12px;
+  overflow: auto;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #334155;
+  font-family: inherit;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+.agent-trace-list {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.agent-trace-list li {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.agent-trace-list p {
+  margin-top: 7px;
+}
+
+.trace-citations {
+  margin-top: 9px;
+}
+
+.trace-citations span {
+  overflow-wrap: anywhere;
+}
+
 .metric p {
   margin: 0;
   color: var(--brand-dark);

@@ -27,6 +27,23 @@ class ReviewIssue(BaseModel):
     legal_basis: str
     suggestion: str
 
+class AgentToolTrace(BaseModel):
+    """Agent 单次工具调用的安全摘要，不保存原始材料。"""
+
+    model_config = ConfigDict(extra="forbid")
+
+    tool_name: Literal[
+        "knowledge_search",
+        "check_completeness",
+        "industry_category_check",
+        "risk_summary",
+    ]
+    status: Literal["SUCCESS", "ERROR"]
+    input_summary: str = Field(default="", max_length=200)
+    output_summary: str = Field(default="", max_length=500)
+    latency_ms: float = Field(ge=0)
+    citation_ids: list[str] = Field(default_factory=list, max_length=10)
+
 
 class AgentResult(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -38,6 +55,7 @@ class AgentResult(BaseModel):
     ]
     analysis: str
     decision: Literal["APPROVED", "REJECTED", "NEED_MANUAL_REVIEW"]
+    tool_trace: list[AgentToolTrace] = Field(default_factory=list, max_length=10)
 
 
 class ReviewResponse(BaseModel):

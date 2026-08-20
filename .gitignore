@@ -46,3 +46,7 @@ uploads/
 *.jpeg
 *.png
 
+
+# Evaluation privacy and smoke outputs
+evaluation/results/**/*.json
+evaluation/results/agent-llm-smoke/

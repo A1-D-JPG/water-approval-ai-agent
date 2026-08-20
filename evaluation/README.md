@@ -50,6 +50,19 @@ Chunk 实验固定 BGE 和 Top-3，对比 `400/80`、`700/120` 与 `1000/150`，
 
 Agent 评测关注审核结论、问题类型 Precision/Recall/F1、重复运行稳定性和延迟。
 
+## 6. 真实 LLM Agent 审核评测
+
+`datasets/agent_llm_eval.jsonl` 使用 3 组真实格式测试材料，覆盖要件缺失、证照过期和合规通过。脚本检查规则与 Agent 结论、必需工具覆盖率、工具成功率、引用有效率、轨迹脱敏、降级率和延迟。
+
+该评测会真实调用 `.env` 中配置的模型 API，可能产生费用，不加入默认批量测试。报告不保存申请字段、材料全文或 Agent 分析原文。
+
+```powershell
+.\python-ai-service\.venv310\Scripts\python.exe .\evaluation\evaluate_agent_llm.py `
+  --output-dir .\evaluation\results\agent-llm-01
+```
+
+可使用 `--case-id AGENT-LLM-001` 仅运行一条。当前 3 条本地回归用例综合通过率、Agent 结论一致率、必需工具覆盖率、工具成功率、引用有效率和轨迹脱敏通过率均为 100%，P95 端到端延迟为 11065.33 ms。
+
 ## 使用原则
 
 - 只引用最近一次同代码版本报告中的结果。
