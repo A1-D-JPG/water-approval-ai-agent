@@ -26,7 +26,16 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None]:
     if not env_flag("SKIP_KB_STARTUP", False):
         try:
             result = review_engine.build_knowledge_base(reset=False)
-            logger.info("knowledge_base_ready files=%s chunks=%s", result["files"], result["chunks"])
+            logger.info(
+                "knowledge_base_ready files=%s chunks=%s embedded_chunks=%s added=%s updated=%s deleted=%s unchanged=%s",
+                result["files"],
+                result["chunks"],
+                result["embedded_chunks"],
+                result["added"],
+                result["updated"],
+                result["deleted"],
+                result["unchanged"],
+            )
         except Exception:
             logger.exception("knowledge_base_startup_failed")
     yield

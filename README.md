@@ -130,6 +130,12 @@ docker run --name policyflow-ai-service -d -p 8000:8000 `
 - `GET /health/ready`：要求知识库无错误且向量数量大于 0；未就绪时返回 HTTP 503。
 - `GET /health`：保留原有综合状态接口，兼容已有调用方。
 
+#### 增量知识库索引
+
+服务使用 SHA-256 文件哈希跟踪知识文档版本。启动建库时只对新增或内容发生变化的文档执行分块与向量化，未变化文档直接复用 ChromaDB 中的向量；已删除文档的旧向量会同步清理。更新时先写入新哈希对应的向量块，再删除旧块，降低模型调用失败造成数据缺失的风险。
+
+建库结果和启动日志包含 `added`、`updated`、`deleted`、`unchanged` 与 `embedded_chunks`，便于定位索引变化并观测重复向量化。首次升级已有向量库时，缺少哈希元数据的旧块会自动迁移；后续无变更启动的 `embedded_chunks` 应为 `0`。
+
 本地实测中，CPU-only PyTorch 将镜像内容体积从 3.09 GB 降至 545 MB，减少约 82.4%；Docker 磁盘占用从 9.07 GB 降至 2.52 GB。复用命名卷后，新容器加载 BGE 并恢复 106 个向量的时间由约 25.9 秒降至约 17.5 秒。以上数据来自当前开发机，不代表生产环境性能。
 
 ### Spring Boot
@@ -167,7 +173,7 @@ npm run dev
 
 ## 验证状态
 
-- Python：24 项测试通过。
+- Python：26 项测试通过。
 - Spring Boot：`mvn -DskipTests package` 通过。
 - Vue：`npm run build` 通过。
 

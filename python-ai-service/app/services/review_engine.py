@@ -190,13 +190,33 @@ def load_materials(paths: list[str]) -> list[Material]:
     return materials
 
 
+def _invalidate_bm25_index() -> None:
+    global _bm25_index, _bm25_documents, _bm25_metadatas, _bm25_ready
+    _bm25_index = None
+    _bm25_documents = []
+    _bm25_metadatas = []
+    _bm25_ready = False
+
+
+def _stored_chunks_by_source(store: Chroma) -> dict[str, list[tuple[str, dict[str, Any]]]]:
+    stored = store.get(include=["metadatas"])
+    ids = list(stored.get("ids") or [])
+    metadatas = list(stored.get("metadatas") or [])
+    chunks: dict[str, list[tuple[str, dict[str, Any]]]] = {}
+    for item_id, metadata in zip(ids, metadatas):
+        metadata = metadata or {}
+        source_key = str(metadata.get("source_key") or metadata.get("source") or "").casefold()
+        if source_key:
+            chunks.setdefault(source_key, []).append((str(item_id), metadata))
+    return chunks
+
+
 def build_knowledge_base(reset: bool = False) -> dict[str, Any]:
     if reset:
         reset_vector_store()
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
-    source_dirs = [DOCS_DIR, SOURCE_DOCS_DIR]
     files: list[Path] = []
-    for folder in source_dirs:
+    for folder in [DOCS_DIR, SOURCE_DOCS_DIR]:
         if folder.exists():
             files.extend(
                 p
@@ -207,35 +227,79 @@ def build_knowledge_base(reset: bool = False) -> dict[str, Any]:
                 and not p.name.startswith("~$")
             )
 
-    splitter = RecursiveCharacterTextSplitter(chunk_size=700, chunk_overlap=120)
-    docs: list[str] = []
-    metas: list[dict[str, Any]] = []
-    seen_files: set[str] = set()
-    unique_files: list[Path] = []
+    unique_files: dict[str, Path] = {}
     for file in files:
-        file_key = file.name.lower()
-        if file_key not in seen_files:
-            seen_files.add(file_key)
-            unique_files.append(file)
+        unique_files.setdefault(file.name.casefold(), file)
 
-    for file in unique_files:
+    store = vector_store()
+    stored_chunks = _stored_chunks_by_source(store)
+    current_keys = set(unique_files)
+    deleted_keys = set(stored_chunks) - current_keys
+    changed = False
+    for source_key in deleted_keys:
+        store.delete(ids=[item_id for item_id, _ in stored_chunks[source_key]])
+        changed = True
+
+    splitter = RecursiveCharacterTextSplitter(chunk_size=700, chunk_overlap=120)
+    stats = {"added": 0, "updated": 0, "deleted": len(deleted_keys), "unchanged": 0}
+    embedded_chunks = 0
+    errors: list[dict[str, str]] = []
+
+    for source_key, file in unique_files.items():
+        previous = stored_chunks.get(source_key, [])
         try:
+            file_hash = file_sha256(file)
+            if previous and all(metadata.get("file_hash") == file_hash for _, metadata in previous):
+                stats["unchanged"] += 1
+                continue
             text = read_unstructured_text(file)
-        except Exception:
+        except Exception as exc:
+            errors.append({"source": file.name, "error": str(exc)})
             continue
-        for i, chunk in enumerate(splitter.split_text(text)):
-            if i >= MAX_CHUNKS_PER_FILE:
-                break
-            if chunk.strip():
-                docs.append(chunk)
-                metas.append({"source": file.name, "path": str(file), "chunk": i})
-    if docs:
-        ids = [
-            f"{hashlib.sha1(m['path'].encode('utf-8')).hexdigest()[:12]}-{m['chunk']}"
-            for m in metas
+
+        chunks = [
+            chunk.strip()
+            for index, chunk in enumerate(splitter.split_text(text))
+            if index < MAX_CHUNKS_PER_FILE and chunk.strip()
         ]
-        vector_store().add_texts(docs, metadatas=metas, ids=ids)
-    return {"files": len(unique_files), "chunks": len(docs), "sources": [p.name for p in unique_files]}
+        new_ids: list[str] = []
+        if chunks:
+            source_digest = hashlib.sha1(source_key.encode("utf-8")).hexdigest()[:12]
+            new_ids = [f"{source_digest}-{file_hash[:12]}-{index}" for index in range(len(chunks))]
+            metadatas = [
+                {
+                    "source": file.name,
+                    "source_key": source_key,
+                    "path": str(file),
+                    "file_hash": file_hash,
+                    "chunk": index,
+                }
+                for index in range(len(chunks))
+            ]
+            store.add_texts(chunks, metadatas=metadatas, ids=new_ids)
+            embedded_chunks += len(chunks)
+
+        if previous:
+            new_id_set = set(new_ids)
+            stale_ids = [item_id for item_id, _ in previous if item_id not in new_id_set]
+            if stale_ids:
+                store.delete(ids=stale_ids)
+            stats["updated"] += 1
+        else:
+            stats["added"] += 1
+        changed = True
+
+    if changed:
+        _invalidate_bm25_index()
+    total_chunks = len(store.get(include=["metadatas"]).get("ids") or [])
+    return {
+        "files": len(unique_files),
+        "chunks": total_chunks,
+        "sources": [path.name for path in unique_files.values()],
+        "embedded_chunks": embedded_chunks,
+        "errors": errors,
+        **stats,
+    }
 
 
 def _normalize_title(text: str) -> str:
