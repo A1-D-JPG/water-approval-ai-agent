@@ -1,0 +1,16 @@
+.venv
+.venv310
+__pycache__
+*.py[cod]
+.pytest_cache
+.coverage
+htmlcov
+.env
+.git
+.gitignore
+.idea
+.vscode
+chroma_db
+app/tests
+requirements-dev.txt
+*.log

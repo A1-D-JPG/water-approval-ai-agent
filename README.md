@@ -111,6 +111,27 @@ RAG_LLM_GENERATION_ENABLED=1
 
 将拥有合法使用权限的知识文档放入 `python-ai-service/knowledge_docs` 后，调用 `/kb/rebuild` 构建索引。
 
+#### Docker 启动
+
+Python AI 服务使用 CPU-only PyTorch 镜像，避免在仅使用 CPU 推理时安装 CUDA、cuDNN、NCCL 和 Triton：
+
+```powershell
+docker build -t policyflow-ai-service:0.1.0-rc1 .\python-ai-service
+docker run --name policyflow-ai-service -d -p 8000:8000 `
+  -e USE_HF_EMBEDDINGS=1 `
+  -v policyflow-hf-cache:/root/.cache/huggingface `
+  -v policyflow-chroma:/app/chroma_db `
+  policyflow-ai-service:0.1.0-rc1
+```
+
+命名卷分别持久化 Hugging Face 模型缓存和 ChromaDB 向量索引。服务提供分层健康检查：
+
+- `GET /health/live`：只检查 FastAPI 进程，供容器健康检查使用。
+- `GET /health/ready`：要求知识库无错误且向量数量大于 0；未就绪时返回 HTTP 503。
+- `GET /health`：保留原有综合状态接口，兼容已有调用方。
+
+本地实测中，CPU-only PyTorch 将镜像内容体积从 3.09 GB 降至 545 MB，减少约 82.4%；Docker 磁盘占用从 9.07 GB 降至 2.52 GB。复用命名卷后，新容器加载 BGE 并恢复 106 个向量的时间由约 25.9 秒降至约 17.5 秒。以上数据来自当前开发机，不代表生产环境性能。
+
 ### Spring Boot
 
 ```powershell
@@ -146,7 +167,7 @@ npm run dev
 
 ## 验证状态
 
-- Python：22 项测试通过。
+- Python：24 项测试通过。
 - Spring Boot：`mvn -DskipTests package` 通过。
 - Vue：`npm run build` 通过。
 

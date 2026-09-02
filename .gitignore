@@ -36,6 +36,12 @@ uploads/
 *.db
 *.sqlite
 
+# Python generated files
+**/__pycache__/
+**/*.py[cod]
+.coverage
+htmlcov/
+
 # Private course and identity materials
 资料/
 测试用例*/
