@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Response, status
 
 from app.rag.service import guarded_search
 from app.schemas import HealthResponse, RAGQueryRequest, RAGQueryResponse, ReviewRequest, ReviewResponse, ToolCallRequest, ToolCallResponse
@@ -18,6 +18,39 @@ def health() -> HealthResponse:
     kb = review_engine.kb_status()
     status = "ok" if not kb.get("vector_error") else "degraded"
     return HealthResponse(status=status, service="python-ai-service", version="2.0.0", knowledge_base=kb)
+
+@router.get(
+    "/health/live",
+    response_model=dict[str, str],
+    tags=["system"],
+)
+def liveness() -> dict[str, str]:
+    """只检查 FastAPI 进程是否存活，不访问任何外部依赖。"""
+
+    return {
+        "status": "ok",
+        "service": "python-ai-service",
+        "version": "2.0.0",
+    }
+
+
+@router.get("/health/ready", response_model=HealthResponse, tags=["system"])
+def readiness(response: Response) -> HealthResponse:
+    """检查知识库是否已经准备好接收业务流量。"""
+
+    kb = review_engine.kb_status()
+    vector_count = int(kb.get("vector_count") or 0)
+    ready = not kb.get("vector_error") and vector_count > 0
+
+    if not ready:
+        response.status_code = status.HTTP_503_SERVICE_UNAVAILABLE
+
+    return HealthResponse(
+        status="ok" if ready else "degraded",
+        service="python-ai-service",
+        version="2.0.0",
+        knowledge_base=kb,
+    )
 
 
 @router.get("/kb/status", response_model=dict[str, Any], tags=["knowledge-base"])
