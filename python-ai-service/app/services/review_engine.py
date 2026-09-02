@@ -23,8 +23,16 @@ load_env_file()
 SERVICE_DIR = Path(__file__).resolve().parents[2]
 PROJECT_DIR = SERVICE_DIR.parent
 CHROMA_DIR = SERVICE_DIR / "chroma_db"
-DOCS_DIR = SERVICE_DIR / "knowledge_docs"
-SOURCE_DOCS_DIR = PROJECT_DIR / "资料"
+
+
+def _configured_directory(env_name: str, default: Path) -> Path:
+    """Return an absolute directory configured by environment or its default."""
+    configured = os.getenv(env_name, "").strip()
+    return Path(configured).expanduser().resolve() if configured else default
+
+
+DOCS_DIR = _configured_directory("KNOWLEDGE_DOCS_DIR", SERVICE_DIR / "knowledge_docs")
+SOURCE_DOCS_DIR = _configured_directory("KNOWLEDGE_SOURCE_DOCS_DIR", PROJECT_DIR / "资料")
 EMBED_MODEL = "BAAI/bge-small-zh-v1.5"
 MAX_CHUNKS_PER_FILE = int(os.getenv("KB_MAX_CHUNKS_PER_FILE", "80"))
 EXCLUDED_KB_NAMES = {"README.md", "TEAM.md", ".gitkeep"}

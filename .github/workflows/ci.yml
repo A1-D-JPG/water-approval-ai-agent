@@ -26,6 +26,8 @@ jobs:
       SKIP_KB_STARTUP: "1"
       RAG_LLM_GENERATION_ENABLED: "0"
       ANONYMIZED_TELEMETRY: "False"
+      KNOWLEDGE_DOCS_DIR: app/tests/fixtures/knowledge_docs
+      KNOWLEDGE_SOURCE_DOCS_DIR: app/tests/fixtures/empty_source_docs
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
